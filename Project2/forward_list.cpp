@@ -27,11 +27,11 @@ public:
 		cout << "Age: " << age << endl;
 		cout << "--------------" << endl;
 	}
-	string GetName()
+	string GetName() 
 	{
 		return name;
 	}
-	int GetAge()
+	int GetAge() 
 	{
 		return age;
 	}
@@ -41,6 +41,22 @@ ostream& operator << (ostream& os,Student obj)
 {
 	os << "Name: " << obj.GetName() << "\tAge: " << obj.GetAge() << endl;
 	return os;
+}
+
+void SearchByName(list<Student>& group)
+{
+	string searchName;
+	cout << "Enter the name you want to find: ";
+	cin >> searchName;
+	for (auto ptr = group.begin(); ptr != group.end(); ptr++)
+	{
+		if (ptr->GetName() == searchName)
+		{
+			cout << "Student was found" << endl;
+			return;
+		}
+	}
+	cout << "Student wasn't found" << endl;
 }
 
 int main()
@@ -61,9 +77,10 @@ int main()
 
 	for (auto ptr = group.begin(); ptr != group.end(); ptr++)
 	{
-		(*ptr)->Print();
+		ptr->Print();
 	}
 
 	group.push_back(Student("Pavel", 17));
 	group.pop_front();
+	SearchByName(group);
 }
